@@ -14,14 +14,18 @@ protocol CreateViewProtocol: class {
 }
 
 protocol CreateStoreProtocol {
-    
+    func addNewItem(_ string: String)
 }
 
 protocol CreateInteractorProtocol {
     var view: CreateViewProtocol? { get set }
     var store: CreateStoreProtocol! { get set }
+    
+    func apply(string: String)
+    func discard()
 }
 
-protocol CreateCoordinatorProtocol {
-    
+protocol CreateRouterProtocol {
+    func close()
+    func discardCreate()
 }

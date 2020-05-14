@@ -8,5 +8,7 @@
 import Foundation
 
 class CreateStore: CreateStoreProtocol {
-    
+    func addNewItem(_ string: String) {
+        
+    }
 }

@@ -105,8 +105,6 @@ class ServiceViewController: UIViewController, ServiceViewProtocol, UITableViewD
         array = list
         tableView.reloadData()
         showLoading(false)
-       
-        showError(nil)
     }
     
     func showError(_ error: Error?) {

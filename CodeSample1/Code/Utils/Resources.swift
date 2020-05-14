@@ -20,10 +20,17 @@ enum ui {
     enum string {
         enum common {
             static var empty: String { return "" }
-            static var error: String { return "ui.string.common.error"§ }
             static var add: String { return "ui.string.common.add"§ }
+            static var edit: String { return "ui.string.common.edit"§ }
             static var list: String { return "ui.string.common.list"§ }
+            static var error: String { return "ui.string.common.error"§ }
             static var service: String { return "ui.string.common.service"§ }
+            static var itemName: String { return "ui.string.common.itemName"§ }
+            
+            static var warning: String { return "ui.string.common.warning"§ }
+            static var saveChanges: String { return "ui.string.common.saveChanges"§ }
+            static var yes: String { return "ui.string.common.yes"§ }
+            static var no: String { return "ui.string.common.no"§ }
         }
     }
 

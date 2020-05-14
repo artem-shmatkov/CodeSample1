@@ -1,4 +1,11 @@
 "ui.string.common.error" = "Ошибка";
+"ui.string.common.edit" = "Править";
 "ui.string.common.add" = "Добавить";
 "ui.string.common.list" = "Список";
 "ui.string.common.service" = "Сервисы";
+"ui.string.common.itemName" = "Название";
+
+"ui.string.common.warning" = "Внимание";
+"ui.string.common.saveChanges" = "Сохранить изменения?";
+"ui.string.common.yes" = "Да";
+"ui.string.common.no" = "Нет";

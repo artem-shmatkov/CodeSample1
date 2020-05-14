@@ -10,4 +10,14 @@ import Foundation
 class CreateInteractor: CreateInteractorProtocol {
     var view: CreateViewProtocol?
     var store: CreateStoreProtocol!
+    var router: CreateRouterProtocol!
+    
+    func apply(string: String) {
+        store.addNewItem(string)
+        router.close()
+    }
+    
+    func discard() {
+        router.discardCreate()
+    }
 }

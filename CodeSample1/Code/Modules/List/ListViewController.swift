@@ -18,10 +18,9 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
-        setupData()
         setupBar()
         
-        tableView.reloadData()
+        interactor.viewReady()
     }
     
     fileprivate func setupTable() {
@@ -39,19 +38,22 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
-    fileprivate func setupData() {
-        for i in 0...9 {
-            let item = ListItemModel()
-            item.name = "item #\(i)"
-            item.selected = i % 2 == 0
-            array.append(item)
-        }
-    }
-    
     fileprivate func setupBar() {
         self.navigationItem.title = ui.string.common.list
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: ui.string.common.add, style: .plain, target: self, action: #selector(addButtonTouched))
+    }
+    
+    // MARK: ListViewProtocol
+    
+    func update(array: [ListItemModel]) {
+        self.array = array
+        tableView.reloadData()
+    }
+    
+    func update(element: ListItemModel) {
+        array.append(element)
+        tableView.reloadData()
     }
     
     // MARK: Actions
@@ -66,12 +68,42 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
         return 50
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let element = array[indexPath.row]
+            interactor.deleteElement(id: element.id)
+            
+            array.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let closeAction = UIContextualAction(style: .normal, title: ui.string.common.edit, handler: { [weak self] action, view, success in
+            if let sself = self {
+                let element = sself.array[indexPath.row]
+                sself.interactor.editElement(id: element.id)
+                success(true)
+            } else {
+                success(false)
+            }
+        })
+        closeAction.backgroundColor = UIColor.green.withAlphaComponent(0.75)
+        
+        return UISwipeActionsConfiguration(actions: [closeAction])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let element = array[indexPath.row]
+        interactor.editElement(id: element.id)
+    }
+    
     // MARK: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         if let listCell = cell as? ListTableCell {

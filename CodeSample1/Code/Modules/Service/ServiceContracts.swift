@@ -27,6 +27,6 @@ protocol ServiceInteractorProtocol {
     func viewReady()
 }
 
-protocol ServiceCoordinatorProtocol {
+protocol ServiceRouterProtocol {
     
 }

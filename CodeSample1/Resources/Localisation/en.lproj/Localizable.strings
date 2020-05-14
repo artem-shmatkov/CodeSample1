@@ -1,4 +1,11 @@
 "ui.string.common.error" = "Error";
+"ui.string.common.edit" = "Edit";
 "ui.string.common.add" = "Add";
 "ui.string.common.list" = "List";
 "ui.string.common.service" = "Service";
+"ui.string.common.itemName" = "Item Name";
+
+"ui.string.common.warning" = "Warning";
+"ui.string.common.saveChanges" = "Do you want to save changes?";
+"ui.string.common.yes" = "Yes";
+"ui.string.common.no" = "No";
