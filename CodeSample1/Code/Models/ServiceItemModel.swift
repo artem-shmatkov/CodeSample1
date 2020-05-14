@@ -8,10 +8,10 @@
 import Foundation
 
 class ServiceItemModel: NSObject {
-    var title = ""
-    var artist = ""
-    var country = ""
-    var company = ""
-    var price: Double = 0.0
+    var title = "title"
+    var artist = "artist"
+    var country = "country"
+    var company = "company"
+    var price: Double = 9.99
     var year = 1990
 }

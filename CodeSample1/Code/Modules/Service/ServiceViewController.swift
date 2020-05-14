@@ -11,15 +11,25 @@ fileprivate let cellIdentifier = ServiceTableCell.description()
 
 class ServiceViewController: UIViewController, ServiceViewProtocol, UITableViewDelegate, UITableViewDataSource {
     var interactor: ServiceInteractorProtocol!
-    
-    var tableView: UITableView!
     var array: [ServiceItemModel] = []
+    
+    var errorView: ErrorView!
+    var loaderView: LoaderView!
+    var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        
         setupTable()
-        setupData()
-        tableView.reloadData()
+        setupBar()
+        
+        setupLoaderView()
+        setupErrorView()
+        
+        showLoading(true)
+        interactor.viewReady()
     }
     
     fileprivate func setupTable() {
@@ -37,18 +47,85 @@ class ServiceViewController: UIViewController, ServiceViewProtocol, UITableViewD
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
-    fileprivate func setupData() {
-        for i in 0...9 {
-            let item = ServiceItemModel()
-            item.title = "item #\(i)"
-            array.append(item)
+    fileprivate func setupBar() {
+        self.navigationItem.title = ui.string.common.service
+    }
+    
+    fileprivate func setupLoaderView() {
+        loaderView = LoaderView()
+        view.addSubview(loaderView)
+        loaderView.translatesAutoresizingMaskIntoConstraints = false
+        loaderView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        loaderView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loaderView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        loaderView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        loaderView.isHidden = true
+        loaderView.setup()
+    }
+    
+    fileprivate func setupErrorView() {
+        errorView = ErrorView()
+        view.addSubview(errorView)
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        errorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        errorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        errorView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        errorView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        errorView.isHidden = true
+        errorView.setup()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideError))
+        errorView.addGestureRecognizer(tapGesture)
+    }
+    
+    fileprivate func showLoading(_ loading: Bool) {
+        loaderView.isHidden = false
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: [.beginFromCurrentState, .allowUserInteraction, .allowAnimatedContent, .curveEaseInOut], animations: { [weak self] in
+            self?.loaderView.alpha = loading ? 1.0 : 0.0
+            self?.tableView.alpha = loading ? 0.0 : 1.0
+        }) { [weak self] (finished) in
+            self?.loaderView.alpha = loading ? 1.0 : 0.0
+            self?.tableView.alpha = loading ? 0.0 : 1.0
+        }
+    }
+    
+    @objc fileprivate func hideError() {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: [.beginFromCurrentState, .allowUserInteraction, .allowAnimatedContent, .curveEaseInOut], animations: { [weak self] in
+            self?.errorView.alpha = 0.0
+        }) { [weak self] (finished) in
+            self?.errorView.alpha = 0.0
+            self?.errorView.isHidden = true
+        }
+    }
+    
+    // MARK: ServiceViewProtocol
+    
+    func showList(_ list: [ServiceItemModel]) {
+        array = list
+        tableView.reloadData()
+        showLoading(false)
+       
+        showError(nil)
+    }
+    
+    func showError(_ error: Error?) {
+        errorView.alpha = 0.0
+        errorView.isHidden = false
+        
+        errorView.update(error)
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: [.beginFromCurrentState, .allowUserInteraction, .allowAnimatedContent, .curveEaseInOut], animations: { [weak self] in
+            self?.errorView.alpha = 1.0
+        }) { [weak self] (finished) in
+            self?.errorView.alpha = 1.0
         }
     }
     
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 160
     }
     
     // MARK: UITableViewDataSource

@@ -19,6 +19,8 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
         super.viewDidLoad()
         setupTable()
         setupData()
+        setupBar()
+        
         tableView.reloadData()
     }
     
@@ -44,6 +46,18 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
             item.selected = i % 2 == 0
             array.append(item)
         }
+    }
+    
+    fileprivate func setupBar() {
+        self.navigationItem.title = ui.string.common.list
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: ui.string.common.add, style: .plain, target: self, action: #selector(addButtonTouched))
+    }
+    
+    // MARK: Actions
+    
+    @objc func addButtonTouched() {
+        interactor.addButtonTouched()
     }
     
     // MARK: UITableViewDelegate

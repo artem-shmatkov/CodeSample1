@@ -8,6 +8,7 @@
 import Foundation
 
 class ListItemModel: NSObject {
+    var id = 0
     var name = ""
     var selected = false
 }

@@ -10,4 +10,10 @@ import Foundation
 class ListInteractor: ListInteractorProtocol {
     var view: ListViewProtocol?
     var store: ListStoreProtocol!
+    
+    // MARK: ListInteractorProtocol
+    
+    @objc func addButtonTouched() {
+        print("addButtonTouched")
+    }
 }

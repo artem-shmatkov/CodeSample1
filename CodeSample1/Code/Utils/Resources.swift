@@ -20,22 +20,14 @@ enum ui {
     enum string {
         enum common {
             static var empty: String { return "" }
+            static var error: String { return "ui.string.common.error"§ }
+            static var add: String { return "ui.string.common.add"§ }
             static var list: String { return "ui.string.common.list"§ }
             static var service: String { return "ui.string.common.service"§ }
         }
     }
 
     enum image {
-        enum icon {
-            static var back: UIImage! { return loadImage("img-back-button-icon"§) }
-        }
-
-        enum button {
-            enum back {
-                static var gender: UIImage! { return loadImage("img-gender-button-back"§) }
-            }
-        }
-
         enum tabbar {
             enum list {
                 static var normal: UIImage! { return loadImage("img-tab-list-icon"§) }
