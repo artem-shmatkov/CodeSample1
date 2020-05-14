@@ -9,3 +9,7 @@
 "ui.string.common.saveChanges" = "Do you want to save changes?";
 "ui.string.common.yes" = "Yes";
 "ui.string.common.no" = "No";
+
+"ui.string.common.back" = "Back";
+"ui.string.common.done" = "Done";
+"ui.string.common.revert" = "Revert";

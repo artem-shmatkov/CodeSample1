@@ -25,12 +25,14 @@ class CreateViewController: UIViewController, CreateViewProtocol, UITextFieldDel
         setupButtons()
         setupTitle()
         setupLayout()
+        
+        interactor.viewReady()
     }
     
     fileprivate func setupBar() {
         self.navigationItem.title = ui.string.common.add
         
-        let barButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonTouched))
+        let barButton = UIBarButtonItem(title: ui.string.common.back, style: .plain, target: self, action: #selector(backButtonTouched))
         self.navigationItem.leftBarButtonItem = barButton
     }
     
@@ -52,10 +54,10 @@ class CreateViewController: UIViewController, CreateViewProtocol, UITextFieldDel
     
     fileprivate func setupButtons() {
         doneButton = UIButton(type: .system)
-        doneButton.setTitle("Done", for: [])
+        doneButton.setTitle(ui.string.common.done, for: [])
         
         revertButton = UIButton(type: .system)
-        revertButton.setTitle("Revert", for: [])
+        revertButton.setTitle(ui.string.common.revert, for: [])
         
         doneButton.setTitleColor(.white, for: [])
         revertButton.setTitleColor(.white, for: [])
@@ -104,20 +106,26 @@ class CreateViewController: UIViewController, CreateViewProtocol, UITextFieldDel
     
     fileprivate func showAlert() {
         let alert = UIAlertController(title: ui.string.common.warning, message: ui.string.common.saveChanges, preferredStyle: .alert)
-        let actionYes = UIAlertAction(title: ui.string.common.no, style: .destructive) { [weak self] (action) in
+        let actionNo = UIAlertAction(title: ui.string.common.no, style: .destructive) { [weak self] (action) in
+            self?.interactor.discard()
+        }
+        
+        let actionYes = UIAlertAction(title: ui.string.common.yes, style: .default) { [weak self] (action) in
             if let sself = self, let text = sself.textField.text {
                 sself.interactor.apply(string: text)
             }
-        }
-        
-        let actionNo = UIAlertAction(title: ui.string.common.yes, style: .default) { [weak self] (action) in
-            self?.interactor.discard()
         }
         
         alert.addAction(actionNo)
         alert.addAction(actionYes)
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: CreateViewProtocol
+    
+    func update(item: ListItemModel) {
+        textField.text = item.name
     }
     
     // MARK: Actions
@@ -145,7 +153,6 @@ class CreateViewController: UIViewController, CreateViewProtocol, UITextFieldDel
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         doneButton.isEnabled = string != ""
         doneButton.alpha = string != "" ? 1.0 : 0.5
-        
         return true
     }
 }

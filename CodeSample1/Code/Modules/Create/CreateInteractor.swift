@@ -12,8 +12,22 @@ class CreateInteractor: CreateInteractorProtocol {
     var store: CreateStoreProtocol!
     var router: CreateRouterProtocol!
     
+    var idToEdit: Int = -1
+    var activeItem: ListItemModel?
+    
+    func viewReady() {
+        if let item = store.getItem(id: idToEdit) {
+            activeItem = item
+            view?.update(item: item)
+        }
+    }
+    
     func apply(string: String) {
-        store.addNewItem(string)
+        if let item = activeItem {
+            store.updateItem(id: item.id, string: string, selected: item.selected)
+        } else {
+            store.addNewItem(string: string)
+        }
         router.close()
     }
     

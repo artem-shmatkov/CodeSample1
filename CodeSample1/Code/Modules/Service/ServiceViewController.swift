@@ -57,8 +57,8 @@ class ServiceViewController: UIViewController, ServiceViewProtocol, UITableViewD
         loaderView.translatesAutoresizingMaskIntoConstraints = false
         loaderView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         loaderView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loaderView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        loaderView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        loaderView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        loaderView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         loaderView.isHidden = true
         loaderView.setup()
     }

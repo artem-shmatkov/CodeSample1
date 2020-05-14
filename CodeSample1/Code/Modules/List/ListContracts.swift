@@ -11,11 +11,16 @@ protocol ListViewProtocol: class {
     var interactor: ListInteractorProtocol! { get set }
     
     func update(array: [ListItemModel])
-    func update(element: ListItemModel)
+    func update(item: ListItemModel)
 }
 
 protocol ListStoreProtocol {
+    var listener: ListStoreListenerProtocol! { get set }
     
+    func setup()
+    func deleteItem(id: Int)
+    func getItems() -> [ListItemModel]
+    func itemChanged(id: Int, selected: Bool)
 }
 
 protocol ListInteractorProtocol {
@@ -25,11 +30,12 @@ protocol ListInteractorProtocol {
     func viewReady()
     
     func addButtonTouched()
-    func editElement(id: Int)
-    func deleteElement(id: Int)
+    func editItem(id: Int)
+    func deleteItem(id: Int)
+    func itemChanged(id: Int, selected: Bool)
 }
 
 protocol ListRouterProtocol {
-    func wantAddElement()
-    func wantEditElement(id: Int)
+    func wantAddItem()
+    func wantEditItem(id: Int)
 }

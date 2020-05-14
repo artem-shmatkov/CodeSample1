@@ -8,7 +8,17 @@
 import Foundation
 
 class CreateStore: CreateStoreProtocol {
-    func addNewItem(_ string: String) {
-        
+    var baseStorage: BaseListStorageProtocol!
+    
+    func addNewItem(string: String) {
+        baseStorage.addNewItem(string: string)
+    }
+    
+    func updateItem(id: Int, string: String, selected: Bool) {
+        baseStorage.updateItem(id: id, string: string, selected: selected)
+    }
+    
+    func getItem(id: Int) -> ListItemModel? {
+        baseStorage.getItem(id: id)
     }
 }

@@ -7,39 +7,48 @@
 
 import Foundation
 
-class ListInteractor: ListInteractorProtocol {
+class ListInteractor: ListInteractorProtocol, ListStoreListenerProtocol {
     var view: ListViewProtocol?
     var store: ListStoreProtocol!
     var router: ListRouterProtocol!
     
     func viewReady() {
+        store.setup()
         setupData()
     }
     
     fileprivate func setupData() {
-        var array: [ListItemModel] = []
+        store.listener = self
         
-        for i in 0...9 {
-            let item = ListItemModel()
-            item.name = "item #\(i)"
-            item.selected = i % 2 == 0
-            array.append(item)
-        }
-        
+        let array = store.getItems()
         view?.update(array: array)
     }
     
     // MARK: ListInteractorProtocol
     
     @objc func addButtonTouched() {
-        router.wantAddElement()
+        router.wantAddItem()
     }
     
-    func editElement(id: Int) {
-        router.wantEditElement(id: id)
+    func editItem(id: Int) {
+        router.wantEditItem(id: id)
     }
     
-    func deleteElement(id: Int) {
-//        store.delete
+    func deleteItem(id: Int) {
+        store.deleteItem(id: id)
+    }
+    
+    func itemChanged(id: Int, selected: Bool) {
+        store.itemChanged(id: id, selected: selected)
+    }
+    
+    // MARK: ListStoreListenerProtocol
+    
+    func itemAdded(item: ListItemModel) {
+        view?.update(item: item)
+    }
+    
+    func itemChanged(item: ListItemModel) {
+        view?.update(item: item)
     }
 }

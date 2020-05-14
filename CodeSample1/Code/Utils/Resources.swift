@@ -31,6 +31,10 @@ enum ui {
             static var saveChanges: String { return "ui.string.common.saveChanges"§ }
             static var yes: String { return "ui.string.common.yes"§ }
             static var no: String { return "ui.string.common.no"§ }
+            
+            static var back: String { return "ui.string.common.back"§ }
+            static var done: String { return "ui.string.common.done"§ }
+            static var revert: String { return "ui.string.common.revert"§ }
         }
     }
 
@@ -45,6 +49,11 @@ enum ui {
                 static var normal: UIImage! { return loadImage("img-tab-service-icon"§) }
                 static var selected: UIImage! { return loadImage("img-tab-service-icon-selected"§) }
             }
+        }
+        
+        enum listCell {
+            static var normal: UIImage! { return loadImage("img-bulb-icon"§) }
+            static var selected: UIImage! { return loadImage("img-bulb-icon-selected"§) }
         }
     }
 

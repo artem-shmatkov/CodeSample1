@@ -11,10 +11,14 @@ enum CreateMode {
 
 protocol CreateViewProtocol: class {
     var interactor: CreateInteractorProtocol! { get set }
+
+    func update(item: ListItemModel)
 }
 
 protocol CreateStoreProtocol {
-    func addNewItem(_ string: String)
+    func addNewItem(string: String)
+    func updateItem(id: Int, string: String, selected: Bool)
+    func getItem(id: Int) -> ListItemModel?
 }
 
 protocol CreateInteractorProtocol {
@@ -23,6 +27,7 @@ protocol CreateInteractorProtocol {
     
     func apply(string: String)
     func discard()
+    func viewReady()
 }
 
 protocol CreateRouterProtocol {

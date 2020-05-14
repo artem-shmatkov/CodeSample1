@@ -51,8 +51,21 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
         tableView.reloadData()
     }
     
-    func update(element: ListItemModel) {
-        array.append(element)
+    func update(item: ListItemModel) {
+        var index = -1
+        for (idx, i) in array.enumerated() {
+            if i.id == item.id {
+                array.remove(at: idx)
+                array.insert(item, at: idx)
+                index = idx
+                break
+            }
+        }
+        
+        if index == -1 {
+            array.append(item)
+        }
+        
         tableView.reloadData()
     }
     
@@ -70,8 +83,8 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let element = array[indexPath.row]
-            interactor.deleteElement(id: element.id)
+            let item = array[indexPath.row]
+            interactor.deleteItem(id: item.id)
             
             array.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -81,8 +94,8 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let closeAction = UIContextualAction(style: .normal, title: ui.string.common.edit, handler: { [weak self] action, view, success in
             if let sself = self {
-                let element = sself.array[indexPath.row]
-                sself.interactor.editElement(id: element.id)
+                let item = sself.array[indexPath.row]
+                sself.interactor.editItem(id: item.id)
                 success(true)
             } else {
                 success(false)
@@ -94,8 +107,8 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let element = array[indexPath.row]
-        interactor.editElement(id: element.id)
+        let item = array[indexPath.row]
+        interactor.editItem(id: item.id)
     }
     
     // MARK: UITableViewDataSource
@@ -109,6 +122,9 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
         if let listCell = cell as? ListTableCell {
             let item = array[indexPath.row]
             listCell.update(model: item)
+            listCell.handler = { [weak self] id, selected in
+                self?.interactor.itemChanged(id: id, selected: selected)
+            }
         }
         return cell
     }

@@ -13,10 +13,15 @@ class Router: NSObject, ListRouterProtocol, CreateRouterProtocol {
     var listController: UINavigationController!
     
     var builder: Builder!
+    var baseStorage: BaseListStorage!
     
     func start(window: UIWindow) {
-        builder = Builder()
+        baseStorage = BaseListStorage.shared
+        baseStorage.setup()
         
+        builder = Builder()
+        builder.baseStorage = baseStorage
+            
         setupControllers()
         
         window.rootViewController = tabController
@@ -33,13 +38,13 @@ class Router: NSObject, ListRouterProtocol, CreateRouterProtocol {
     
     // MARK: ListRouterProtocol
     
-    func wantAddElement() {
+    func wantAddItem() {
         let createController = builder.createModule(router: self)
         listController.pushViewController(createController, animated: true)
     }
     
-    func wantEditElement(id: Int) {
-        let createController = builder.createModule(router: self)
+    func wantEditItem(id: Int) {
+        let createController = builder.createModule(router: self, idToEdit: id)
         listController.pushViewController(createController, animated: true)
     }
     

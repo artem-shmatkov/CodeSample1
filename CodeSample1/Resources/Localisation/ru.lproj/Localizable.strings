@@ -9,3 +9,7 @@
 "ui.string.common.saveChanges" = "Сохранить изменения?";
 "ui.string.common.yes" = "Да";
 "ui.string.common.no" = "Нет";
+
+"ui.string.common.back" = "Назад";
+"ui.string.common.done" = "Добавить";
+"ui.string.common.revert" = "Отменить";

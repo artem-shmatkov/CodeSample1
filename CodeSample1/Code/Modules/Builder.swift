@@ -8,10 +8,14 @@
 import UIKit
 
 class Builder: NSObject {
+    var baseStorage: BaseListStorageProtocol!
+    
     func listModule(router: ListRouterProtocol) -> UINavigationController {
         let store = ListStore()
         let interactor = ListInteractor()
         let viewController = ListViewController()
+        
+        store.baseStorage = baseStorage
         
         interactor.store = store
         interactor.router = router
@@ -41,11 +45,14 @@ class Builder: NSObject {
         return nc
     }
     
-    func createModule(router: CreateRouterProtocol) -> CreateViewController {
+    func createModule(router: CreateRouterProtocol, idToEdit: Int = -1) -> CreateViewController {
         let store = CreateStore()
         let interactor = CreateInteractor()
         let viewController = CreateViewController()
         
+        store.baseStorage = baseStorage
+        
+        interactor.idToEdit = idToEdit
         interactor.store = store
         interactor.router = router
         interactor.view = viewController
