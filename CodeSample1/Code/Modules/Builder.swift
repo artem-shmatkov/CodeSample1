@@ -17,7 +17,7 @@ class Builder: NSObject {
         interactor.view = viewController
         
         viewController.interactor = interactor
-        viewController.tabBarItem = UITabBarItem(title: "List", image: nil, selectedImage: nil)
+        viewController.tabBarItem = UITabBarItem(title: ui.string.common.list, image: ui.image.tabbar.list.normal, selectedImage: ui.image.tabbar.list.selected)
         
         return viewController
     }
@@ -31,7 +31,7 @@ class Builder: NSObject {
         interactor.view = viewController
         
         viewController.interactor = interactor
-        viewController.tabBarItem = UITabBarItem(title: "Service", image: nil, selectedImage: nil)
+        viewController.tabBarItem = UITabBarItem(title: ui.string.common.service, image: ui.image.tabbar.service.normal, selectedImage: ui.image.tabbar.service.selected)
         
         return viewController
     }
