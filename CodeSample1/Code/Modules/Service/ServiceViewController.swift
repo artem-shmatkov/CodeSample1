@@ -27,7 +27,10 @@ class ServiceViewController: UIViewController, ServiceViewProtocol, UITableViewD
         
         setupLoaderView()
         setupErrorView()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         showLoading(true)
         interactor.viewReady()
     }
