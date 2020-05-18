@@ -8,7 +8,7 @@
 import Foundation
 
 class ListInteractor: ListInteractorProtocol, ListStoreListenerProtocol {
-    var view: ListViewProtocol?
+    weak var view: ListViewProtocol?
     var store: ListStoreProtocol!
     var router: ListRouterProtocol!
     

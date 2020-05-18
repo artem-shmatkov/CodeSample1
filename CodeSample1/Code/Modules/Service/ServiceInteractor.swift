@@ -8,7 +8,7 @@
 import Foundation
 
 class ServiceInteractor: ServiceInteractorProtocol {
-    var view: ServiceViewProtocol?
+    weak var view: ServiceViewProtocol?
     var store: ServiceStoreProtocol!
     
     fileprivate var startDate: Date!

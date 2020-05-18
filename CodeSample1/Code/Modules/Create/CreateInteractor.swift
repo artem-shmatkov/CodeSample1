@@ -8,7 +8,7 @@
 import Foundation
 
 class CreateInteractor: CreateInteractorProtocol {
-    var view: CreateViewProtocol?
+    weak var view: CreateViewProtocol?
     var store: CreateStoreProtocol!
     var router: CreateRouterProtocol!
     
