@@ -94,8 +94,8 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let closeAction = UIContextualAction(style: .normal, title: ui.string.common.edit, handler: { [weak self] action, view, success in
             if let sself = self {
-                let item = sself.array[indexPath.row]
-                sself.interactor.editItem(id: item.id)
+                let model = sself.array[indexPath.row]
+                sself.interactor.editItem(id: model.id)
                 success(true)
             } else {
                 success(false)
@@ -120,11 +120,10 @@ class ListViewController: UIViewController, ListViewProtocol, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         if let listCell = cell as? ListTableCell {
-            let item = array[indexPath.row]
-            listCell.update(model: item)
-            listCell.handler = { [weak self] id, selected in
+            let model = array[indexPath.row]
+            listCell.update(model: model, handler: { [weak self] id, selected in
                 self?.interactor.itemChanged(id: id, selected: selected)
-            }
+            })
         }
         return cell
     }

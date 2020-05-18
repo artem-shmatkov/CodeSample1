@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ListItemModel: NSObject {
+struct ListItemModel {
     var id = 0
     var name = ""
     var selected = false

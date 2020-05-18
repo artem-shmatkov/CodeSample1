@@ -47,13 +47,12 @@ class ServiceInteractor: ServiceInteractorProtocol {
     func convertData(_ data: [DiskData]) -> [ServiceItemModel] {
         var result: [ServiceItemModel] = []
         for disk in data {
-            let model = ServiceItemModel()
-            model.title = disk.title
-            model.artist = disk.artist
-            model.country = disk.country
-            model.company = disk.company
-            model.price = disk.price
-            model.year = disk.year
+            let model = ServiceItemModel(title: disk.title,
+                                         artist: disk.artist,
+                                         country: disk.country,
+                                         company: disk.company,
+                                         price: disk.price,
+                                         year: disk.year)
             result.append(model)
         }
         return result

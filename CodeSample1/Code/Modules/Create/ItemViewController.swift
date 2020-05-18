@@ -1,5 +1,5 @@
 //
-//  CreateViewController.swift
+//  ItemViewController.swift
 //  CodeSample1
 //
 //  Created by Artem Shmatkov on 14.05.2020.
@@ -7,14 +7,16 @@
 
 import UIKit
 
-class CreateViewController: UIViewController, CreateViewProtocol, UITextFieldDelegate {
-    var interactor: CreateInteractorProtocol!
+class ItemViewController: UIViewController, ItemViewProtocol, UITextFieldDelegate {
+    var interactor: ItemInteractorProtocol!
     
     fileprivate var titleLabel: UILabel!
     fileprivate var textField: TextField!
     
     fileprivate var doneButton: UIButton!
     fileprivate var revertButton: UIButton!
+    
+    fileprivate var wasEditing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,10 +124,16 @@ class CreateViewController: UIViewController, CreateViewProtocol, UITextFieldDel
         present(alert, animated: true, completion: nil)
     }
     
+    fileprivate func updateButton(string: String) {
+        doneButton.isEnabled = string != ""
+        doneButton.alpha = string != "" ? 1.0 : 0.5
+    }
+    
     // MARK: CreateViewProtocol
     
     func update(item: ListItemModel) {
         textField.text = item.name
+        updateButton(string: item.name)
     }
     
     // MARK: Actions
@@ -141,7 +149,7 @@ class CreateViewController: UIViewController, CreateViewProtocol, UITextFieldDel
     }
     
     @objc fileprivate func backButtonTouched() {
-        if let text = textField.text, text != "" {
+        if let text = textField.text, text != "", wasEditing {
             showAlert()
         } else {
             interactor.discard()
@@ -151,8 +159,13 @@ class CreateViewController: UIViewController, CreateViewProtocol, UITextFieldDel
     // MARK: UITextFieldDelegate
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        doneButton.isEnabled = string != ""
-        doneButton.alpha = string != "" ? 1.0 : 0.5
+        wasEditing = true
+        if let text = textField.text,
+           let textRange = Range(range, in: text) {
+           let updatedText = text.replacingCharacters(in: textRange, with: string)
+            updateButton(string: updatedText)
+        }
+        
         return true
     }
 }

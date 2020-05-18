@@ -1,5 +1,5 @@
 //
-//  CreateInteractor.swift
+//  ItemInteractor.swift
 //  CodeSample1
 //
 //  Created by Artem Shmatkov on 14.05.2020.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-class CreateInteractor: CreateInteractorProtocol {
-    weak var view: CreateViewProtocol?
-    var store: CreateStoreProtocol!
-    var router: CreateRouterProtocol!
+class ItemInteractor: ItemInteractorProtocol {
+    weak var view: ItemViewProtocol?
+    var store: ItemStoreProtocol!
+    var router: ItemRouterProtocol!
     
     var idToEdit: Int = -1
     var activeItem: ListItemModel?
@@ -26,12 +26,12 @@ class CreateInteractor: CreateInteractorProtocol {
         if let item = activeItem {
             store.updateItem(id: item.id, string: string, selected: item.selected)
         } else {
-            store.addNewItem(string: string)
+            store.addItem(string: string)
         }
         router.close()
     }
     
     func discard() {
-        router.discardCreate()
+        router.close()
     }
 }

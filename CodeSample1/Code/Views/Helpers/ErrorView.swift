@@ -16,29 +16,21 @@ class ErrorView: UIView {
         detail = UILabel()
         
         title.text = ui.string.common.error
-        
-        title.textColor = .white
-        detail.textColor = .white
-        
-        title.textAlignment = .center
-        detail.textAlignment = .center
-        
-        addSubview(title)
-        addSubview(detail)
-        
         detail.numberOfLines = 3
         
-        title.translatesAutoresizingMaskIntoConstraints = false
-        detail.translatesAutoresizingMaskIntoConstraints = false
-        
-        title.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        detail.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        
-        title.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -20).isActive = true
-        detail.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive = true
-        
-        title.widthAnchor.constraint(equalTo: widthAnchor, constant: -20).isActive = true
-        detail.widthAnchor.constraint(equalTo: widthAnchor, constant: -20).isActive = true
+        [title, detail].forEach { (label) in
+            if let label = label {
+                label.textColor = .white
+                label.textAlignment = .center
+                
+                addSubview(label)
+                
+                label.translatesAutoresizingMaskIntoConstraints = false
+                label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+                label.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -20).isActive = true
+                label.widthAnchor.constraint(equalTo: widthAnchor, constant: -20).isActive = true
+            }
+        }
         
         layer.cornerRadius = 10
         backgroundColor = UIColor.black.withAlphaComponent(0.75)

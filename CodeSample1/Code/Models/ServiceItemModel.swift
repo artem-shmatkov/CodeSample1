@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ServiceItemModel: NSObject {
+struct ServiceItemModel {
     var title = "title"
     var artist = "artist"
     var country = "country"

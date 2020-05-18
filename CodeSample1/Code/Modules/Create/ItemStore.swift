@@ -1,5 +1,5 @@
 //
-//  CreateStore.swift
+//  ItemStore.swift
 //  CodeSample1
 //
 //  Created by Artem Shmatkov on 14.05.2020.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-class CreateStore: CreateStoreProtocol {
+class ItemStore: ItemStoreProtocol {
     var baseStorage: BaseListStorageProtocol!
     
-    func addNewItem(string: String) {
-        baseStorage.addNewItem(string: string)
+    func addItem(string: String) {
+        baseStorage.addItem(string: string)
     }
     
     func updateItem(id: Int, string: String, selected: Bool) {

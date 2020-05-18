@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Builder: NSObject {
+class Builder {
     var baseStorage: BaseListStorageProtocol!
     
     func listModule(router: ListRouterProtocol) -> UINavigationController {
@@ -45,10 +45,10 @@ class Builder: NSObject {
         return nc
     }
     
-    func createModule(router: CreateRouterProtocol, idToEdit: Int = -1) -> CreateViewController {
-        let store = CreateStore()
-        let interactor = CreateInteractor()
-        let viewController = CreateViewController()
+    func createModule(router: ItemRouterProtocol, idToEdit: Int = -1) -> ItemViewController {
+        let store = ItemStore()
+        let interactor = ItemInteractor()
+        let viewController = ItemViewController()
         
         store.baseStorage = baseStorage
         

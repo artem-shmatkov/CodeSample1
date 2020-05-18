@@ -17,10 +17,9 @@ protocol BaseStoreListenerProtocol {
 }
 
 protocol BaseListStorageProtocol {
+    func addItem(string: String)
     func deleteItem(id: Int)
-    func addNewItem(string: String)
-    func itemChanged(id: Int, selected: Bool)
-    func updateItem(id: Int, string: String, selected: Bool)
+    func updateItem(id: Int, string: String?, selected: Bool?)
     
     func getItems() -> [ListItemModel]
     func getItem(id: Int) -> ListItemModel?
@@ -28,7 +27,7 @@ protocol BaseListStorageProtocol {
     func addListener(_ listener: BaseStoreListenerProtocol)
 }
 
-class BaseListStorage: NSObject, BaseListStorageProtocol {
+class BaseListStorage: BaseListStorageProtocol {
     static let shared = BaseListStorage()
     
     fileprivate var realm: Realm!
@@ -46,7 +45,7 @@ class BaseListStorage: NSObject, BaseListStorageProtocol {
         listeners.append(listener)
     }
     
-    func addNewItem(string: String) {
+    func addItem(string: String) {
         let lastId = UserDefaults.standard.integer(forKey: lastListItemId) + 1
         UserDefaults.standard.set(lastId, forKey: lastListItemId)
         
@@ -54,10 +53,7 @@ class BaseListStorage: NSObject, BaseListStorageProtocol {
             realm.beginWrite()
         }
         
-        let item = RealmListItemModel()
-        item.id = lastId
-        item.name = string
-        item.selected = false
+        let item = objectFrom(id: lastId, name: string, selected: false)
         realm.add(item)
         
         try? realm.commitWrite()
@@ -65,28 +61,14 @@ class BaseListStorage: NSObject, BaseListStorageProtocol {
         notifyAdded(item: item)
     }
     
-    func updateItem(id: Int, string: String, selected: Bool) {
+    func updateItem(id: Int, string: String? = nil, selected: Bool? = nil) {
         if let item = findItem(id: id) {
             if !realm.isInWriteTransaction {
                 realm.beginWrite()
             }
             
-            item.name = string
-            item.selected = selected
-            
-            try? realm.commitWrite()
-            
-            notifyChanged(item: item)
-        }
-    }
-    
-    func itemChanged(id: Int, selected: Bool) {
-        if let item = findItem(id: id) {
-            if !realm.isInWriteTransaction {
-                realm.beginWrite()
-            }
-            
-            item.selected = selected
+            item.name = string ?? item.name
+            item.selected = selected ?? item.selected
             
             try? realm.commitWrite()
             
@@ -116,14 +98,19 @@ class BaseListStorage: NSObject, BaseListStorageProtocol {
         var result: [ListItemModel] = []
         let items = realm.objects(RealmListItemModel.self)
         for item in items {
-            let model = ListItemModel()
-            model.id = item.id
-            model.name = item.name
-            model.selected = item.selected
+            let model = modelFrom(item: item)
             result.append(model)
         }
         
         return result
+    }
+    
+    func getItem(id: Int) -> ListItemModel? {
+        if let item = findItem(id: id) {
+            return modelFrom(item: item)
+        }
+        
+        return nil
     }
     
     fileprivate func setupFirstTimeAccess() {
@@ -132,10 +119,7 @@ class BaseListStorage: NSObject, BaseListStorageProtocol {
         }
         
         for i in 0...9 {
-            let item = RealmListItemModel()
-            item.id = i
-            item.name = "item #\(i)"
-            item.selected = i % 2 == 0
+            let item = objectFrom(id: i, name: "item #\(i)", selected: i % 2 == 0)
             realm.add(item)
         }
         
@@ -144,16 +128,19 @@ class BaseListStorage: NSObject, BaseListStorageProtocol {
         UserDefaults.standard.set(9, forKey: lastListItemId)
     }
     
-    func getItem(id: Int) -> ListItemModel? {
-        if let item = findItem(id: id) {
-            let model = ListItemModel()
-            model.id = item.id
-            model.name = item.name
-            model.selected = item.selected
-            return model
-        }
-        
-        return nil
+    fileprivate func objectFrom(id: Int, name: String, selected: Bool) -> RealmListItemModel {
+        let item = RealmListItemModel()
+        item.id = id
+        item.name = name
+        item.selected = selected
+        return item
+    }
+    
+    fileprivate func modelFrom(item: RealmListItemModel) -> ListItemModel {
+        let model = ListItemModel(id: item.id,
+                                  name: item.name,
+                                  selected: item.selected)
+        return model
     }
     
     fileprivate func findItem(id: Int) -> RealmListItemModel? {
@@ -163,20 +150,12 @@ class BaseListStorage: NSObject, BaseListStorageProtocol {
     }
     
     fileprivate func notifyAdded(item: RealmListItemModel) {
-        let model = ListItemModel()
-        model.id = item.id
-        model.name = item.name
-        model.selected = item.selected
-        
+        let model = modelFrom(item: item)
         listeners.forEach { $0.itemAdded(item: model) }
     }
     
     fileprivate func notifyChanged(item: RealmListItemModel) {
-        let model = ListItemModel()
-        model.id = item.id
-        model.name = item.name
-        model.selected = item.selected
-        
+        let model = modelFrom(item: item)
         listeners.forEach { $0.itemChanged(item: model) }
     }
 }

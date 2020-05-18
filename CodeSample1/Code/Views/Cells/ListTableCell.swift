@@ -36,7 +36,9 @@ class ListTableCell: UITableViewCell {
         switchView.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
     }
     
-    func update(model: ListItemModel) {
+    func update(model: ListItemModel, handler: @escaping ListCellHandler) {
+        self.handler = handler
+        
         id = model.id
         textLabel?.text = model.name
         switchView.isOn = model.selected

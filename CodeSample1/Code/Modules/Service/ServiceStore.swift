@@ -9,7 +9,7 @@ import Foundation
 
 typealias ServiceUpdateCompletion = (_ result: [DiskData]?, _ error: Error?) -> Void
 
-class ServiceStore: NSObject, ServiceStoreProtocol {
+class ServiceStore: ServiceStoreProtocol {
     fileprivate let loader = Loader.shared
     
     func update(completion: @escaping ServiceUpdateCompletion) {

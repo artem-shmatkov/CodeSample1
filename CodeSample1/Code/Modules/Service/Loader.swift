@@ -30,7 +30,7 @@ fileprivate let urlString = "https://www.w3schools.com/xml/cd_catalog.xml"
 
 typealias DownloadCompletion = (_ result: Data?, _ error: DownloadError?) -> Void
 
-class Loader: NSObject {
+class Loader {
     static let shared = Loader()
     fileprivate var isLoading = false
     

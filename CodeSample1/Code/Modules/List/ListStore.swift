@@ -25,7 +25,7 @@ class ListStore: ListStoreProtocol, BaseStoreListenerProtocol {
     }
     
     func itemChanged(id: Int, selected: Bool) {
-        baseStorage.itemChanged(id: id, selected: selected)
+        baseStorage.updateItem(id: id, string: nil, selected: selected)
     }
     
     func getItems() -> [ListItemModel] {

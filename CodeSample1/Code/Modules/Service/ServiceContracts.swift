@@ -20,11 +20,9 @@ protocol ServiceStoreProtocol {
     func update(completion: @escaping ServiceUpdateCompletion)
 }
 
-protocol ServiceInteractorProtocol {
+protocol ServiceInteractorProtocol: BaseInteractorProtocol {
     var view: ServiceViewProtocol? { get set }
     var store: ServiceStoreProtocol! { get set }
-    
-    func viewReady()
 }
 
 protocol ServiceRouterProtocol {

@@ -8,10 +8,6 @@
 import Foundation
 
 extension String {
-    var length: Int {
-        return count
-    }
-    
     var localized: String {
         return NSLocalizedString(self, bundle: Bundle.main, comment: "")
     }

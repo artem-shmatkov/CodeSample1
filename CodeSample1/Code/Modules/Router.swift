@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Router: NSObject, ListRouterProtocol, CreateRouterProtocol {
+class Router: ListRouterProtocol, ItemRouterProtocol {
     var tabController: UITabBarController!
     var listController: UINavigationController!
     
@@ -49,10 +49,6 @@ class Router: NSObject, ListRouterProtocol, CreateRouterProtocol {
     }
     
     // MARK: CreateRouterProtocol
-    
-    func discardCreate() {
-        listController.popViewController(animated: true)
-    }
     
     func close() {
         listController.popViewController(animated: true)

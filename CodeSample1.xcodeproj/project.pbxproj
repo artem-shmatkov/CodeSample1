@@ -12,10 +12,10 @@
 		E01238B6246D3B8800F61D15 /* ServiceItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238B5246D3B8800F61D15 /* ServiceItemModel.swift */; };
 		E01238BC246D3DD400F61D15 /* ListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238BB246D3DD400F61D15 /* ListTableCell.swift */; };
 		E01238BE246D3DF700F61D15 /* ServiceTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238BD246D3DF700F61D15 /* ServiceTableCell.swift */; };
-		E01238C4246D451B00F61D15 /* CreateContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238C0246D451B00F61D15 /* CreateContracts.swift */; };
-		E01238C5246D451B00F61D15 /* CreateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238C1246D451B00F61D15 /* CreateInteractor.swift */; };
-		E01238C6246D451B00F61D15 /* CreateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238C2246D451B00F61D15 /* CreateStore.swift */; };
-		E01238C7246D451B00F61D15 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238C3246D451B00F61D15 /* CreateViewController.swift */; };
+		E01238C4246D451B00F61D15 /* ItemContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238C0246D451B00F61D15 /* ItemContracts.swift */; };
+		E01238C5246D451B00F61D15 /* ItemInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238C1246D451B00F61D15 /* ItemInteractor.swift */; };
+		E01238C6246D451B00F61D15 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238C2246D451B00F61D15 /* ItemStore.swift */; };
+		E01238C7246D451B00F61D15 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238C3246D451B00F61D15 /* ItemViewController.swift */; };
 		E01238C9246D541E00F61D15 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238C8246D541E00F61D15 /* Parser.swift */; };
 		E01238CB246D560500F61D15 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238CA246D560500F61D15 /* Loader.swift */; };
 		E01238CF246D668E00F61D15 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01238CE246D668E00F61D15 /* LoaderView.swift */; };
@@ -41,6 +41,7 @@
 		E07A8BA9246D2B1E00867F43 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07A8BA8246D2B1E00867F43 /* String.swift */; };
 		E07A8BB4246D2E1400867F43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E07A8BB2246D2E1400867F43 /* Localizable.strings */; };
 		E07A8BB7246D2E2100867F43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E07A8BB5246D2E2100867F43 /* Localizable.strings */; };
+		E0F031322472E47A0022AE7B /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F031312472E47A0022AE7B /* BaseInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,10 +51,10 @@
 		E01238B5246D3B8800F61D15 /* ServiceItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItemModel.swift; sourceTree = "<group>"; };
 		E01238BB246D3DD400F61D15 /* ListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableCell.swift; sourceTree = "<group>"; };
 		E01238BD246D3DF700F61D15 /* ServiceTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTableCell.swift; sourceTree = "<group>"; };
-		E01238C0246D451B00F61D15 /* CreateContracts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContracts.swift; sourceTree = "<group>"; };
-		E01238C1246D451B00F61D15 /* CreateInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInteractor.swift; sourceTree = "<group>"; };
-		E01238C2246D451B00F61D15 /* CreateStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStore.swift; sourceTree = "<group>"; };
-		E01238C3246D451B00F61D15 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		E01238C0246D451B00F61D15 /* ItemContracts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemContracts.swift; sourceTree = "<group>"; };
+		E01238C1246D451B00F61D15 /* ItemInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInteractor.swift; sourceTree = "<group>"; };
+		E01238C2246D451B00F61D15 /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
+		E01238C3246D451B00F61D15 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		E01238C8246D541E00F61D15 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		E01238CA246D560500F61D15 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		E01238CE246D668E00F61D15 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
@@ -79,9 +80,10 @@
 		E07A8BA6246D2AE000867F43 /* Sugar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sugar.swift; sourceTree = "<group>"; };
 		E07A8BA8246D2B1E00867F43 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		E07A8BAD246D2CFB00867F43 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E07A8BAE246D2CFB00867F43 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E07A8BB3246D2E1400867F43 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable.strings; sourceTree = "<group>"; };
 		E07A8BB6246D2E2100867F43 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		E0F031312472E47A0022AE7B /* BaseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInteractor.swift; sourceTree = "<group>"; };
+		E0F031332472E4AB0022AE7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB9595F37763A225D849F063 /* Pods-CodeSample1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeSample1.release.xcconfig"; path = "Target Support Files/Pods-CodeSample1/Pods-CodeSample1.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,35 +139,19 @@
 		E01238B8246D3C0B00F61D15 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				E01238B9246D3C1100F61D15 /* List */,
-				E01238BA246D3C1600F61D15 /* Service */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		E01238B9246D3C1100F61D15 /* List */ = {
-			isa = PBXGroup;
-			children = (
 				E01238BB246D3DD400F61D15 /* ListTableCell.swift */,
-			);
-			path = List;
-			sourceTree = "<group>";
-		};
-		E01238BA246D3C1600F61D15 /* Service */ = {
-			isa = PBXGroup;
-			children = (
 				E01238BD246D3DF700F61D15 /* ServiceTableCell.swift */,
 			);
-			path = Service;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		E01238BF246D451B00F61D15 /* Create */ = {
 			isa = PBXGroup;
 			children = (
-				E01238C2246D451B00F61D15 /* CreateStore.swift */,
-				E01238C1246D451B00F61D15 /* CreateInteractor.swift */,
-				E01238C0246D451B00F61D15 /* CreateContracts.swift */,
-				E01238C3246D451B00F61D15 /* CreateViewController.swift */,
+				E01238C2246D451B00F61D15 /* ItemStore.swift */,
+				E01238C1246D451B00F61D15 /* ItemInteractor.swift */,
+				E01238C0246D451B00F61D15 /* ItemContracts.swift */,
+				E01238C3246D451B00F61D15 /* ItemViewController.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -241,6 +227,7 @@
 		E07A8B8F246D216900867F43 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E0F031312472E47A0022AE7B /* BaseInteractor.swift */,
 				E07A8B93246D22FE00867F43 /* Router.swift */,
 				E07A8B91246D221100867F43 /* Builder.swift */,
 				E07A8B95246D24DF00867F43 /* List */,
@@ -352,6 +339,7 @@
 			knownRegions = (
 				en,
 				ru,
+				Base,
 			);
 			mainGroup = E07A8B6A246D1F9900867F43;
 			productRefGroup = E07A8B74246D1F9900867F43 /* Products */;
@@ -424,7 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E01238C7246D451B00F61D15 /* CreateViewController.swift in Sources */,
+				E01238C7246D451B00F61D15 /* ItemViewController.swift in Sources */,
 				E07A8B9E246D252E00867F43 /* ServiceInteractor.swift in Sources */,
 				E01238B4246D3AB200F61D15 /* ListItemModel.swift in Sources */,
 				E01238B6246D3B8800F61D15 /* ServiceItemModel.swift in Sources */,
@@ -433,11 +421,12 @@
 				E07A8B94246D22FE00867F43 /* Router.swift in Sources */,
 				E07A8BA9246D2B1E00867F43 /* String.swift in Sources */,
 				E07A8B77246D1F9900867F43 /* AppDelegate.swift in Sources */,
-				E01238C6246D451B00F61D15 /* CreateStore.swift in Sources */,
-				E01238C5246D451B00F61D15 /* CreateInteractor.swift in Sources */,
+				E01238C6246D451B00F61D15 /* ItemStore.swift in Sources */,
+				E01238C5246D451B00F61D15 /* ItemInteractor.swift in Sources */,
+				E0F031322472E47A0022AE7B /* BaseInteractor.swift in Sources */,
 				E01238D1246D66B500F61D15 /* ErrorView.swift in Sources */,
 				E01238BE246D3DF700F61D15 /* ServiceTableCell.swift in Sources */,
-				E01238C4246D451B00F61D15 /* CreateContracts.swift in Sources */,
+				E01238C4246D451B00F61D15 /* ItemContracts.swift in Sources */,
 				E07A8BA2246D256E00867F43 /* ServiceContracts.swift in Sources */,
 				E01238D3246D7CC200F61D15 /* TextField.swift in Sources */,
 				E01238CB246D560500F61D15 /* Loader.swift in Sources */,
@@ -463,7 +452,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E07A8BAD246D2CFB00867F43 /* ru */,
-				E07A8BAE246D2CFB00867F43 /* en */,
+				E0F031332472E4AB0022AE7B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

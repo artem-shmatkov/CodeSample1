@@ -23,11 +23,9 @@ protocol ListStoreProtocol {
     func itemChanged(id: Int, selected: Bool)
 }
 
-protocol ListInteractorProtocol {
+protocol ListInteractorProtocol: BaseInteractorProtocol {
     var view: ListViewProtocol? { get set }
     var store: ListStoreProtocol! { get set }
-    
-    func viewReady()
     
     func addButtonTouched()
     func editItem(id: Int)

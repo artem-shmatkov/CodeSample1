@@ -32,11 +32,12 @@ class ServiceTableCell: UITableViewCell {
         price = UILabel()
         year = UILabel()
        
-        let array = [title, artist, country, company, price, year]
-        array.forEach {
-            contentView.addSubview($0!)
-            $0?.translatesAutoresizingMaskIntoConstraints = false
-            $0?.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        [title, artist, country, company, price, year].forEach {
+            if let label = $0 {
+                contentView.addSubview(label)
+                label.translatesAutoresizingMaskIntoConstraints = false
+                label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+            }
         }
         
         title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
